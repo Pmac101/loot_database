@@ -2,7 +2,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 import React, { Component, useState, useEffect } from "react";
 import Filters from "./components/filters/Filters";
-import Cards from "./components/cards/Cards";
+import Cards from "./components/cards/Card";
+import Pagination from "./components/pagination/Pagination";
+import Search from "./components/search/Search";
 
 
 // main program component
@@ -25,7 +27,8 @@ function App() {
 
     return (
         <div className='App'>
-            <h1 className='text-center ubuntu my-4'>Loot Database</h1>
+            <h1 className='text-center my-4'>Loot Database</h1>
+            <Search/>
             <div className='container'>
                 <div className='row'>
                     <div className='col-3'>
@@ -39,6 +42,8 @@ function App() {
                     </div>
                 </div>
             </div>
+            {/* passes setPageNumber and pageNumber to Pagination component */}
+            <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber}/>
         </div>
     )
 }
