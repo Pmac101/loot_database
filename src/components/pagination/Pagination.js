@@ -1,26 +1,37 @@
 import React from "react";
+import ReactPaginate from "react-paginate";
+
+import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai"; // icons form react-icons
+import { IconContext } from "react-icons"; // for customizing icons
 
 // props passed from App.js useState
-const Pagination = ({pageNumber, setPageNumber}) => {
+const Pagination = ({info, pageNumber, setPageNumber}) => {
 
-    // adds 1 to page number
-    let next = () => {
-        setPageNumber(x => x+1)
-    }
 
-    // subtracts 1 from page number
-    let prev = () => {
-        
-        if (pageNumber === 1) return;
-        setPageNumber(x => x-1)
-    }
-
+    // if page count exists, set that as the value
     return (
-        <div className="container d-flex justify-content-center gap-5 my-5">
-            <button onClick={prev} className="btn btn-primary">Previous</button>
-            <button onClick={next} className="btn btn-primary">Next</button>
-        </div>
-    )
-}
+        <ReactPaginate
+            className="pagination justify-content-center gap-4 my-4"
+            forcePage={pageNumber === 1 ? 0 : pageNumber - 1 }
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            activeClassName="active"
+            onPageChange={(data) => {
+                setPageNumber(data.selected + 1)
+            }}
+            pageCount={info?.pages}
+            previousLabel={
+                <IconContext.Provider value={{ color: "#0d6efd", size: "36px" }}>
+                    <AiFillLeftCircle />
+                </IconContext.Provider>
+            }
+            nextLabel={
+                <IconContext.Provider value={{ color: "#0d6efd", size: "36px" }}>
+                    <AiFillRightCircle />
+                </IconContext.Provider>
+            }
+        />
+    );
+};
 
 export default Pagination

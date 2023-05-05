@@ -29,12 +29,11 @@ function App() {
     return (
         <div className='App'>
             <h1 className='text-center my-4'>Loot Database</h1>
-            <Search setSearch={setSearch}/>
+            {/* passes setPageNumber and setSearch to Search component */}
+            <Search setPageNumber={setPageNumber} setSearch={setSearch}/>
             <div className='container'>
                 <div className='row'>
-                    <div className='col-3'>
-                        <Filters/>
-                    </div>
+                    <Filters/>
                     <div className='col-8'>
                         <div className='row'>
                             {/* passes results to Card component */}
@@ -44,7 +43,7 @@ function App() {
                 </div>
             </div>
             {/* passes setPageNumber and pageNumber to Pagination component */}
-            <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber}/>
+            <Pagination info={info} pageNumber={pageNumber} setPageNumber={setPageNumber}/>
         </div>
     )
 }
