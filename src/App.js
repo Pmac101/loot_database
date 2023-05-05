@@ -13,8 +13,9 @@ function App() {
     // sets default page number. This only works because the api has pages...needs modification for other api
     let [pageNumber, setPageNumber] = useState(1);
     let [fetchData, updateFetchData] = useState([]);
+    let [search, setSearch] = useState("")
     let {info, results} = fetchData;
-    let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}`;
+    let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}`;
 
     // whenever app page changes, this will fetch the new data
     useEffect(() => {
@@ -28,7 +29,7 @@ function App() {
     return (
         <div className='App'>
             <h1 className='text-center my-4'>Loot Database</h1>
-            <Search/>
+            <Search setSearch={setSearch}/>
             <div className='container'>
                 <div className='row'>
                     <div className='col-3'>
