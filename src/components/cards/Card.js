@@ -2,9 +2,11 @@ import React from "react";
 /** CSS Modules let you use the same CSS class name in different files without worrying about naming clashes. Make
  sure css files are named like so: componentName.module.css **/
 import styles from './card.module.css'
+import {Link} from 'react-router-dom'
+
 
 // gets results from App component
-const Cards = ({results}) => {
+const Cards = ({results, page}) => {
 
     let display;
 
@@ -14,8 +16,13 @@ const Cards = ({results}) => {
             let {id, name, image, location, status} = x;
 
             return (
-                <div key={id} className='col-4 mb-4 position-relative'>
-                    <div className={styles.cards}>
+                <Link
+                    style={{textDecoration: "none"}}
+                    to={`${page}${id}`}
+                    key={id}
+                    className='col-lg-4 col-md-6 col-12 mb-4 position-relative text-dark'
+                >
+                    <div className={`${styles.cards} d-flex flex-column justify-content-center`}>
                         {/* card image */}
                         <img src={image} alt="card image" className={`${styles.img} img-fluid`}/>
                         <div className={styles.content}>
@@ -45,7 +52,7 @@ const Cards = ({results}) => {
                             );
                         }
                     })()}
-                </div>
+                </Link>
             )
         })
     }

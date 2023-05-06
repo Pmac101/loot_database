@@ -1,5 +1,11 @@
 import React from "react";
-const Species = () => {
+import FilterButton from "../FilterButton";
+
+
+const Species = ({setPageNumber, setSpecies}) => {
+    let species = ["Human", "Alien", "Humanoid", "Poopybutthole", "Mythological", "Unknown", "Animal", "Disease","Robot",
+        "Cronenberg","Planet",];
+
     return (
         <div>
             <div className="accordion-item">
@@ -19,8 +25,10 @@ const Species = () => {
                      aria-labelledby="headingTwo"
                      data-bs-parent="#accordionExample"
                 >
-                    <div className="accordion-body">
-
+                    <div className="accordion-body d-flex flex-wrap gap-3">
+                        {species.map((items, index) => (
+                            <FilterButton task={setSpecies} setPageNumber={setPageNumber} key={index} name="species" index={index} items={items}/>
+                        ))}
                     </div>
                 </div>
             </div>

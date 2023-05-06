@@ -4,7 +4,7 @@ import styles from './search.module.css'
 // prop from App component
 const Search = ({setPageNumber, setSearch}) => {
     return (
-        <form className="d-flex justify-content-center gap-4 mb-5">
+        <form className="d-flex flex-sm-row flex-column align-items-center justify-content-center gap-4 mb-5">
             {/* stores user input as search parameter for API request */}
             <input
                 type="text"

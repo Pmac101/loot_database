@@ -1,18 +1,33 @@
 import React from "react";
 
 
-const FilterButton = () => {
+const FilterButton = ({name, index, items, task, setPageNumber}) => {
     return (
         <div>
+            {/*TODO: add style to CSS file*/}
+            <style jsx>
+                {`
+                .x:checked + label{
+                  background-color: #0b5ed7;
+                  color: white;
+                }
+                input[type="radio"] {
+                    display:none;
+                }
+                `}
+            </style>
             <div className="form-check">
-                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-                <label className="btn btn-outline-primary" htmlFor="flexRadioDefault1">Single toggle</label>
-            </div>
-            <div className="form-check">
-                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
-                    <label className="btn btn-outline-primary" htmlFor="flexRadioDefault2">
-                        Default checked radio
-                    </label>
+                <input
+                    onClick={()=> {
+                        setPageNumber(1);
+                        task(items);
+                    }}
+                    className="form-check-input x"
+                    type="radio"
+                    name={name}
+                    id={`${name}-${index}`}
+                />
+                <label className="btn btn-outline-primary" htmlFor={`${name}-${index}`}>{items}</label>
             </div>
         </div>
     );
